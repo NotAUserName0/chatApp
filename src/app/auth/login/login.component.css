@@ -1,0 +1,143 @@
+.contenedor{
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  /* BACKGROUND */
+  background: rgb(2,0,36);
+  background: radial-gradient(circle, rgba(2,0,36,1) 1%, rgba(9,9,121,0.8589810924369747) 40%, rgba(0,212,255,1) 100%);
+}
+
+/* ON LOGIN */
+
+.login{
+  width: 30%;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.btn{
+  color: white;
+  border-color: white;
+}
+
+.btn:hover{
+  color: black;
+  background-color: white;
+}
+
+.btn-collection button{
+  width: 50%;
+}
+
+/* ON REGISTER */
+.register{
+  width: 30%;
+  margin-left: 20px;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+/* SEPARADOR */
+.separador{
+  background-color: #5899E2;
+  width: 430px;
+  height: 400px;
+  z-index: 2;
+  transform: translateX(220px);
+  position: absolute;
+  transition: transform 0.8s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.anim{
+  transform: translateX(-220px);
+}
+
+.show{
+  opacity: 1;
+}
+
+.hide{
+  opacity: 0;
+}
+
+/* SI NO HAY ANIM */
+.ingresa{
+  width: 90%;
+  height: 90%;
+  opacity: 1;
+  transition: visibility 0.3s ease;
+}
+
+.unete{
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+  width: 90%;
+  height: 90%;
+  transition: opacity 0.3s ease;
+}
+
+/* SI HAY ANIM */
+.anim .ingresa{
+  visibility: hidden;
+  display: none;
+  opacity: 0;
+}
+
+.anim .unete{
+  visibility: visible;
+  display: block;
+  opacity: 1;
+}
+
+.phone-tittle{
+  display: none;
+}
+
+/* ALERTS */
+.error-message{
+  color: red;
+}
+
+@media screen and (min-width: 320px) and (max-width: 480px) and (orientation: portrait) {
+
+  .separador{
+    display: none;
+  }
+
+  .register{
+    position: absolute;
+    opacity: 0;
+    width: 80%;
+  }
+
+  .show{
+    opacity: 1;
+    z-index: 3;
+  }
+
+  .phone-tittle{
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 80px;
+    color: white;
+    display: block;
+    position: absolute;
+    top: 10%;
+  }
+
+
+  .login{
+    position: absolute;
+    width: 80%;
+    z-index: 2;
+  }
+
+}
+

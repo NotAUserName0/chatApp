@@ -1,0 +1,167 @@
+/* GLOBAL */
+
+.user-info {
+  /*border-bottom: 0.5px solid rgb(177, 177, 177);*/
+  width: 100%;
+  height: 100%;
+  position: relative;
+  font-family: 'Roboto Slab', serif;
+  background-color: rgb(53, 53, 53) ;
+  color: white ;
+}
+
+/* PROFILE PIC*/
+.profile_pic {
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-300%, -50%);
+}
+
+.profile_pic:hover img {
+  opacity: 0.5;
+}
+
+.profile_pic>img {
+  height: 60px;
+  width: 60px;
+  border-radius: 50px;
+  position: relative;
+}
+
+.profile {
+  position: absolute;
+  top: 30%;
+  left: 30%;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.profile_pic:hover i {
+  opacity: 1;
+  cursor: pointer;
+}
+
+/* USER INFO */
+.user-info>p {
+  position: absolute;
+  font-size: 25px;
+  top: 35%;
+  margin-left: 100px;
+}
+
+/* OPTION MENU */
+
+.options {
+  position: absolute;
+  top: 40%;
+  right: 10%;
+  cursor: pointer;
+}
+
+.options:hover {
+  text-decoration: underline overline white;
+}
+
+.option-menu {
+  background-color: rgb(129, 129, 129);
+  border-radius: 10px;
+  position: absolute;
+  right: -40%;
+  top: 80px;
+  width: 60%;
+  height: auto;
+  padding: 10px;
+  opacity: 0;
+  z-index: 3;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.option-menu ul {
+  padding: 0;
+  margin-bottom: 0;
+}
+
+.items {
+  display: flex;
+  justify-content: space-between;
+  margin: 12px;
+}
+
+.items p {
+  margin-bottom: 0;
+}
+
+.items i {
+  transition: transform 0.3s;
+}
+
+.items:hover i {
+  transform: translateX(5px);
+}
+
+.items:hover p {
+  font-weight: 600;
+}
+/* DARK MODE    */
+.dark-mode{
+  background-color: #274060;
+  color: #ffffff;
+}
+
+.dark-mode .options:hover {
+  text-decoration: underline overline #ffffff;
+}
+
+.dark-mode .option-menu{
+  background-color: #335C81;
+  color: #ffffff;
+}
+
+/* APP MEDIA QUERYS */
+
+@media screen and (min-width: 320px) and (max-width: 480px) and (orientation: portrait) {
+  .profile_pic {
+    left: 50%;
+    transform: translate(-200%, -50%);
+  }
+
+  .profile_pic i {
+    display: none;
+  }
+
+  .user-info>p {
+    margin-left: 120px;
+  }
+
+  .options {
+    right: 20%;
+  }
+
+  .options:hover {
+    text-decoration: none;
+  }
+
+  .options:active {
+    text-decoration: underline overline white;
+  }
+
+  .option-menu {
+    background-color: rgb(129, 129, 129);
+    border-radius: 10px;
+    position: absolute;
+    right: 10%;
+    top: 80px;
+    width: 60%;
+    height: auto;
+    padding: 10px;
+    z-index: 8;
+  }
+}

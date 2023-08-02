@@ -1,0 +1,66 @@
+<div class="contenedor">
+
+  <div class="phone-tittle">
+    <p>Welcome!</p>
+  </div>
+
+  <div class="login" id="login">
+    <form [formGroup]="loginForm" (ngSubmit)="sessionInit()">
+      <div class="form-floating mb-3">
+        <input type="email" class="form-control" placeholder="name@example.com" formControlName="user" id="user" >
+        <label for="floatingInput">User</label>
+        <div *ngIf="userError.error" class="error-message">
+          <small>{{userError.message}}</small>
+        </div>
+      </div>
+
+      <div class="form-floating mb-3">
+        <input type="password" class="form-control" placeholder="password" formControlName="password" id="password" >
+        <label for="floatingPassword">Password</label>
+        <div *ngIf="passwordError.error" class="error-message">
+          <small>{{passwordError.message}}</small>
+        </div>
+      </div>
+      <div class="btn-collection">
+        <button class="btn btn-outline-primary">Login</button>
+        <button class="btn btn-outline-primary" (click)="registerOptions()" type="button">New? Join Now!</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="register" id="register">
+    <form [formGroup]="registerForm" (ngSubmit)="sessionReg()">
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" placeholder="" formControlName="user" id="userR">
+        <label for="floatingInput">User</label>
+        <div *ngIf="userError.error" class="error-message">
+          <small>{{userError.message}}</small>
+        </div>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" placeholder="" formControlName="email" id="email">
+        <label for="floatingInput">Email</label>
+        <div *ngIf="passwordError.error" class="error-message">
+          <small>{{passwordError.message}}</small>
+        </div>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" placeholder="name@example.com" formControlName="password" id="passwordR">
+        <label for="floatingInput">Password</label>
+        <div *ngIf="emailError.error" class="error-message">
+          <small>{{emailError.message}}</small>
+        </div>
+      </div>
+      <div class="btn-collection">
+        <button class="btn btn-outline-primary">Register</button>
+        <button class="btn btn-outline-primary" (click)="registerOptions()" type="button">Or Login!</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="separador" id="separador">
+    <img src="../../../assets/Unete!.png" alt="" class="unete">
+    <img src="../../../assets/Ingresa!.png" alt="" class="ingresa">
+  </div>
+
+</div>

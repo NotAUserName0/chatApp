@@ -1,0 +1,28 @@
+<div class="main" id="main">
+  <p class="tittle">{{friend?.name}}</p>
+  <cdk-virtual-scroll-viewport appendOnly itemSize="200" class="message-box" id="message-box" #viewport>
+    <div *ngIf="chat==null"> Envia un mensaje!!</div>
+    <div *ngFor="let message of chat" class="chat-box" id="chat-box">
+
+      <div *ngIf="message.emisor == user; else elseBlock" class="ownMsg" id="ownMsg">
+        <div class="message-info">
+          <p class="message-creator">{{message.emisor}}</p>
+          <small>{{message.date}}</small>
+        </div>
+        <p>{{message.text}}</p>
+      </div>
+
+      <ng-template #elseBlock >
+        <div class="otherMsg" id="otherMsg">
+          <div class="message-info-ot">
+            <p class="message-creator">{{message.emisor}}</p>
+            <small>{{message.date}}</small>
+          </div>
+          <p>{{message.text}}</p>
+        </div>
+      </ng-template>
+    </div>
+  </cdk-virtual-scroll-viewport>
+  <textarea type="text" class="form-control" id="msg" placeholder="Write a message.." rows="1" #msg appAutoresize
+    (keydown.enter)="entrada(msg,friend.chatID)"></textarea>
+</div>

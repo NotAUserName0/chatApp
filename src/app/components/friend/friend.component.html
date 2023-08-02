@@ -1,0 +1,20 @@
+<div class="user-info" id="user-info">
+  <div class="friend_pic">
+    <img src="assets/6769264_60111.jpg" alt=""/>
+  </div>
+
+  <p class="user-name">{{friend.name}}</p>
+
+  <div class="status">
+    <i class="material-icons del" (click)="deleted($event,friend.id,friend.chatID)">delete</i>
+    <div *ngIf="friend.status === 'online'">
+      <i class="material-icons" style="color: green;">lens</i>
+    </div>
+    <div *ngIf="friend.status === 'away'">
+      <i class="material-icons" style="color: yellow;">lens</i>
+    </div>
+    <div *ngIf="friend.status === 'offline'">
+      <i class="material-icons" style="color: red;">lens</i>
+    </div>
+  </div>
+</div>

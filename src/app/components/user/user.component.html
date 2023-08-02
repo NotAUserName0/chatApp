@@ -1,0 +1,18 @@
+<div class="user-info" id="user-info">
+  <!--Profile Pic-->
+  <div class="profile_pic">
+    <img src="assets/6769264_60111.jpg" alt=""/>
+    <i class="material-icons profile" >edit</i>
+  </div>
+  <p>{{mainUser.user}}</p>
+
+  <i class="material-icons options" (click)="displayMenu()">more_horiz</i>
+
+  <div class="option-menu" id="menu">
+    <ul>
+      <li class="items" (click)="edit()"><p class="item-text">Edit username</p><i class="material-icons" >edit</i></li>
+      <li class="items"(click)="add()"><p class="item-text">Add Friend</p><i class="material-icons" >add</i></li>
+      <li class="items"(click)="logout()"><p class="item-text">Logout</p><i class="material-icons" >exit_to_app</i></li>
+    </ul>
+  </div>
+</div>
