@@ -11,7 +11,6 @@ import { ChatComponent } from './components/chat/chat.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AutoresizeDirective } from './directives/autoresize.directive';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { LoginComponent } from './auth/login/login.component';
 import { HomeComponent } from './home/home.component';
 import { HTTP_INTERCEPTORS, HttpClientModule, HttpHeaders } from '@angular/common/http';
@@ -37,7 +36,6 @@ import { Common } from './helpers/common';
     ScrollingModule,
     ReactiveFormsModule,
     SweetAlert2Module.forRoot(),
-    MatSnackBarModule,
     HttpClientModule
   ],
   providers: [HttpHelpers,
