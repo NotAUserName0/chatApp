@@ -13,7 +13,8 @@ import { Common } from 'src/app/helpers/common';
 })
 export class UserComponent {
 
-  mainUser: User //= {user:"", email:"", status:""}
+  mainUser: User
+  variableControlMenu: boolean = false
 
   constructor(private cookie: CookieService,
     private userService: UserService,
@@ -41,8 +42,25 @@ export class UserComponent {
       }
     ).closed
   }
+  /* Manejo de evento del menu */
+  @HostListener('document:click', ['$event'])
+  outOfContext(event: Event) {
+    const target = event.target as HTMLElement;
+    const menu = document.getElementById("menu_btn")
+    if (!menu?.contains(target) && this.variableControlMenu) {
+      this.closeMenu()
+    }
+  }
 
   displayMenu() {
+    console.log("abrir")
+    this.variableControlMenu = !this.variableControlMenu //esta abierto
+    document.getElementById("menu")?.classList.toggle("active")
+  }
+
+  closeMenu() {
+    console.log("cerrar")
+    this.variableControlMenu = false
     document.getElementById("menu")?.classList.toggle("active")
   }
 
@@ -83,7 +101,7 @@ export class UserComponent {
               /* Este ultimo swal se deberia activar unicamente si se hace correctamente el service */
               this.userService.editName(result.value).subscribe(
                 res => {
-                  this.cookie.set("token",res.token)
+                  this.cookie.set("token", res.token)
                   Swal.fire({
                     title: 'User change',
                     icon: 'success',
@@ -93,7 +111,7 @@ export class UserComponent {
                     showConfirmButton: false,
                     timer: 1500,
                   }).finally(
-                    () =>{
+                    () => {
                       location.reload()
                     }
                   )
@@ -127,18 +145,18 @@ export class UserComponent {
       if (res.isConfirmed) {
         /* Este ultimo swal se deberia activar unicamente si se hace correctamente el service */
         this.userService.addFriend(res.value).subscribe(
-          res=>{
+          res => {
             Swal.fire({
               title: 'Amigo agregado!',
               icon: 'success',
-              text:res.message,
+              text: res.message,
               background: "#323336",
               color: "white",
               showCancelButton: false,
               showConfirmButton: false,
               timer: 1500,
             })
-          },(error)=>{
+          }, (error) => {
             console.log(error)
             Swal.fire({
               title: 'No se pudo agregar!',
@@ -153,6 +171,70 @@ export class UserComponent {
           }
         )
 
+      }
+    })
+  }
+
+  async dropUser() {
+    await Swal.fire({
+      title: 'Are you sure?',
+      text: "This action cannot be cancel",
+      showCancelButton: true,
+      background: "#323336",
+      color: "white",
+      confirmButtonColor: 'green',
+      cancelButtonColor: 'red',
+    }).then((res) => {
+      if (res.isConfirmed) {
+        Swal.fire({
+          title: 'Porfavor escribe: accept',
+          text: 'Esto eliminara tu cuenta PERMANENTEMENTE incluyendo chats y amigos',
+          input: 'text',
+          inputValue: "",
+          showCancelButton: true,
+          background: "#323336",
+          color: "white",
+          confirmButtonColor: 'green',
+          cancelButtonColor: 'red',
+          inputValidator: (value) => {
+            if (!value) {
+              return 'You need to write something!'
+            }
+            return null;
+          }
+        }).then((res)=>{
+          if(res.value != "accept"){
+            Swal.fire({
+              title: 'Error!',
+              icon: 'error',
+              text: 'No colocaste la respuesta esperada, porfavor vuelve a iniciar el proceso',
+              background: "#323336",
+              color: "white",
+              showCancelButton: false,
+              showConfirmButton: false,
+              timer: 1500,
+            })
+          }else{
+
+            this.userService.deleteUser().subscribe(()=>{
+              Swal.fire({
+                title: 'Cuenta Eliminada!',
+                text: 'Se te redigira al login, adios!',
+                icon: 'success',
+                background: "#323336",
+                color: "white",
+                showCancelButton: false,
+                showConfirmButton: false,
+                timer: 1500,
+              }).then(()=>{
+                this.cookie.delete("token")
+                location.reload()
+              })
+            },(error)=>{
+              console.log(error)
+            })
+          }
+        })
       }
     })
   }

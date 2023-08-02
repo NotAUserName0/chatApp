@@ -35,5 +35,9 @@ export class UserService {
     return this.http.post<any>(`${this.URL}addFriend`,JSON.stringify(json),this.helper.httpOptions)
   }
 
+  deleteUser(){
+    return this.http.delete(`${this.URL}delUser`)
+  }
+
 
 }

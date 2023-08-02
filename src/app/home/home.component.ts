@@ -3,6 +3,7 @@ import { SocketService } from '../helpers/socket/socket.service';
 import { Friend } from '../models/friend.model';
 import { HomeService } from './home.service';
 import Swal from 'sweetalert2';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,8 @@ export class HomeComponent implements OnInit {
   friend:Friend
 
   constructor(private socket:SocketService,
-    private homeService:HomeService){
+    private homeService:HomeService,
+    private cookie:CookieService){
     socket.connectSocket()
     this.getUserFriends()
   }
